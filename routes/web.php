@@ -13,4 +13,8 @@ use App\Http\Controllers\PagesController;
 |
 */
 
-Route::get('/',[ PagesController::class,'index']);
+Route::get('/',function(){
+    return view('layout.app');
+});
+Route::get('/main',[PagesController::class,'body']);
+Route::get('/footer',[ PagesController::class,'footer']);

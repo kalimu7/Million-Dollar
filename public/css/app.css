@@ -1,0 +1,10 @@
+.ttr{
+    color: white;
+}
+.first-content{
+    background-image: url('/images/bg.jpg');
+    height:90vh;
+    width:100%;
+    background-size:cover;
+    
+}

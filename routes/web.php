@@ -13,8 +13,16 @@ use App\Http\Controllers\PagesController;
 |
 */
 
-Route::get('/',function(){
-    return view('layout.app');
-});
+Route::get('/',[PagesController::class,'body']);
 Route::get('/main',[PagesController::class,'body']);
 Route::get('/footer',[ PagesController::class,'footer']);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

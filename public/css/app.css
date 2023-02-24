@@ -8,3 +8,18 @@
     background-size:cover;
     
 }
+.img-home{
+    width: 400px;
+    height: 300px;
+}
+.category{
+    background-color: rgb(40, 59, 59);
+}
+.lg{
+    width: 200px !important;
+    height: 200px !important;
+    border-radius: 50%;
+}
+/* @media screen and (max-width:) {
+    
+} */

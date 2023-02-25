@@ -15,6 +15,9 @@ class PagesController extends Controller
     public function footer(){
         return view('footer');
     }
+    public function post(){
+        return view('Posts');
+    }
 }
 
 

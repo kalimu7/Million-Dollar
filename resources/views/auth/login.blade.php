@@ -1,7 +1,14 @@
+<style>
+    .lg{
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+    }
+</style>
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <img class="lg" src="{{asset('images/img.jpg')}}" alt="" srcset="">
         </x-slot>
 
         <x-validation-errors class="mb-4" />

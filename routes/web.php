@@ -24,5 +24,8 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
+
     })->name('dashboard');
+    Route::get('/Posts',[PagesController::class,'post']);
+    
 });

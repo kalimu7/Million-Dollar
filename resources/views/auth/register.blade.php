@@ -1,3 +1,10 @@
+<style>
+    .lg{
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+    }
+</style>
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">

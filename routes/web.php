@@ -27,5 +27,8 @@ Route::middleware([
 
     })->name('dashboard');
     Route::get('/Posts',[PagesController::class,'post']);
+    Route::get('/add',[PagesController::class,'addpost']);
+    Route::post('/ajoute',[PagesController::class,'ADD']);
+    Route::get('/display',[PagesController::class,'fetchdata']);
     
 });

@@ -38,7 +38,7 @@
     <div class="feed container my-4 d-flex">
         <div class="add">
             <h3>Welcome To Our Social Network</h3>
-            <a class="btn btn-primary" href="">Add New Post</a>
+            <a class="btn btn-primary" href="/add">Add New Post</a>
         </div>
         <div class="singlepost  mx-auto">
             <div class="d-flex justify-content-between align-items-center ">

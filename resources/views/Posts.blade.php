@@ -2,6 +2,7 @@
 @section('content')
 
     <style>
+       
         .profileimg{
             width: 70px;
             height: 70px;
@@ -15,15 +16,30 @@
             height: 400px;
         }
         .popup{
-            width: 100px;
-            height: 100px;
-            background: black;
+            width: 150px;
+            height: fit-content;
+            /* background: rgb(255, 255, 255); */
             position: absolute;
-            right: 82px;
+            right: 0px;
+            display: none;
+        }
+        .links:hover{
+            color: #0d6efd !important;
+            background: #FFF;
+        }
+        .show{
+            display: block; 
+        }
+        .add{
+            width: 200px;
         }
     </style>
-
-    <div class="feed container my-4 ">
+    
+    <div class="feed container my-4 d-flex">
+        <div class="add">
+            <h3>Welcome To Our Social Network</h3>
+            <a class="btn btn-primary" href="">Add New Post</a>
+        </div>
         <div class="singlepost  mx-auto">
             <div class="d-flex justify-content-between align-items-center ">
                 <div class="first d-flex align-items-center">
@@ -34,9 +50,11 @@
                         <i class="bi bi-globe-europe-africa"></i>
                     </div>
                 </div>    
-                <div class="second">
+                <div class="second position-relative">
                     <i class="bi bi-three-dots" id="btndot"></i>
-                    <div class="popup">
+                    <div class="popup text-center bg-primary">
+                        <a class="d-block py-2 text-decoration-none text-white links mb-1" href="">Update Post</a>
+                        <a class="d-block py-2 text-decoration-none text-white links " href=""> Delete Post </a>
                     </div>
                 </div>
             </div>
@@ -49,7 +67,17 @@
             <div class="postimage">
                 <img width="100%" height="100%" src="/images/pexels-magnus-mueller-2818118.jpg" alt="">
             </div>
-        </div>
+            <div class="likescom d-flex">
+                <div class="likes w-50 text-center">
+                    <i class="bi bi-heart "></i>
+                    {{-- <i class="bi bi-heart-fill text-danger"></i> --}}
+                </div>
+                <div class="comment w-50 text-center">
+                    <i class="bi bi-chat"></i>
+                </div>
+            </div>
+        </div>    
     </div>
+    
 
 @endsection

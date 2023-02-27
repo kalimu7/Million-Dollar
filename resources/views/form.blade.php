@@ -39,7 +39,7 @@ label {
     <div class=" text-center mt-5 ">
 
         <h1 >Add New Post</h1>
-            
+    
         
     </div>
 
@@ -50,7 +50,7 @@ label {
         <div class="card-body bg-light">
    
         <div class = "container">
-    <form id="contact-form" role="form" action="ajoute" method="POST">
+    <form id="contact-form" role="form" action="ajoute" method="POST" enctype="multipart/form-data" >
             @csrf
             
 

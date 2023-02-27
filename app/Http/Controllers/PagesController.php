@@ -29,20 +29,48 @@ class PagesController extends Controller
         // echo $name;
         // echo $id;
         // die;
+        $image = $request->file('image');
+        $imagePath = $image->move(public_path('/uploaded'), $image->getClientOriginalName());
         $post  = new posts;
         $post->owner = $name;
         $post->user_id = $id;
         $post->title = $request->input('title');
-        $post->image_path = $request->input('image');
+        $post->image_path = $request->file('image')->getClientOriginalName();
         $post->category = $request->input('category');
         $post->Description = $request->input('Description');
 
         $post->save();
+
+        return redirect('/Posts')->with('success', 'New Post Created Successfully!');
     }
     public function fetchdata(){
-        $data = posts::all();
-        print_r($data);
+        $AllPosts = posts::all();
+        return view ('Posts')->with('Ps',$AllPosts);
     }
+    public function edit($id){
+        $single = posts::find($id);
+        return view('edit')->with('Ps',$single);
+    }
+    public function update(Request $request,$id){
+
+        $post = posts::find($id);
+        if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $imagePath = $image->move(public_path('/uploaded'), $image->getClientOriginalName());
+        $post->image_path = $image->getClientOriginalName();
+        }
+
+        
+        $post->title = $request->input('title');
+        $post->category = $request->input('category');
+        $post->Description = $request->input('Description');
+        
+        $post->update();
+        
+
+        return redirect('/Posts')->with('success', 'Post updated successfully');
+    }
+    
 }
 
 

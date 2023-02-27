@@ -26,9 +26,11 @@ Route::middleware([
         return view('dashboard');
 
     })->name('dashboard');
-    Route::get('/Posts',[PagesController::class,'post']);
+    Route::get('/Posts',[PagesController::class,'fetchdata']);
     Route::get('/add',[PagesController::class,'addpost']);
     Route::post('/ajoute',[PagesController::class,'ADD']);
     Route::get('/display',[PagesController::class,'fetchdata']);
+    Route::get('/edit/{id}',[PagesController::class,'edit']);
+    Route::post('/update/{id}',[PagesController::class,'update']);
     
 });

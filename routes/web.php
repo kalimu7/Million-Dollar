@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,5 +35,6 @@ Route::middleware([
     Route::post('/update/{id}',[PagesController::class,'update']);
     Route::get('/delete/{id}',[PagesController::class,'destroy']);
     Route::get('/show/{id}',[PagesController::class,'Dsingle']);
+    Route::post('/Addcomment',[CommentController::class,'Add']);
     
 });

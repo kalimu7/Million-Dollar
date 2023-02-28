@@ -88,14 +88,14 @@
                 </div>
             </div> --}}
             <div class="inputs my-2">
-                <form action="" method="">
-                    <input type="hidden" value="{{$P->id}}">
-                    <input type="hidden" value="{{$P->user_id}}">
-                    <textarea  name="" id="comment" rows="2" placeholder="Write your comment in this section" ></textarea>
+                <form action="http://127.0.0.1:8000/Addcomment" method="Post">
+                    @csrf
+                    <input type="hidden" name="post_id" value="{{$P->id}}">
+                    <input type="hidden" name="user_id"value="{{$P->user_id}}">
+                    <textarea  name="comment" id="comment" rows="2" placeholder="Write your comment in this section" ></textarea>
                     <button type="submit" class="btn btn-outline-primary" >Add Comment</button>
                 </form>
             </div>
-            
         </div> 
         
         </div>   

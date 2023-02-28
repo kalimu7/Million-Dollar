@@ -70,6 +70,14 @@ class PagesController extends Controller
 
         return redirect('/Posts')->with('success', 'Post updated successfully');
     }
+    public function destroy($id){
+        posts::destroy($id);
+        return redirect('/Posts')->with('success', 'Post deleted successfully');
+    }
+    public function Dsingle($id){
+        $post = posts::find($id);
+        return view('Single')->with('P',$post);
+    }
     
 }
 

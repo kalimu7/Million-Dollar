@@ -73,11 +73,11 @@ label {
                             
                             <label for="form_need">Category</label>
                             <select id="form_need" name="category" class="form-control"  data-error="Please specify your need.">
-                                <option value="{{$Ps->category}}" selected >{{$Ps->category}}</option>
-                                <option >Sport</option>
-                                <option >IT</option>
-                                <option >Ai</option>
-                                <option >Other</option>
+                                
+                                <option  @selected($Ps->category == 'Sport')>Sport</option>
+                                <option @selected($Ps->category == 'IT')>IT</option>
+                                <option @selected($Ps->category == 'Ai')>Ai</option>
+                                <option @selected($Ps->category == 'Other')>Other</option>
                             </select>
                         </div>
                     </div>
@@ -88,7 +88,7 @@ label {
                         <div class="form-group">
                             <label for="form_email">image</label>
                             
-                            <input id="form_email" type="file" name="image" class="form-control" placeholder="Please enter your email *"  data-error="Valid email is required.">
+                            <input id="form_email" type="file" name="image" value="{{$Ps->image_path}}" class="form-control" placeholder="Please enter your email *"  data-error="Valid email is required.">
                         </div>
 
                     </div>

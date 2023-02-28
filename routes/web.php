@@ -32,5 +32,7 @@ Route::middleware([
     Route::get('/display',[PagesController::class,'fetchdata']);
     Route::get('/edit/{id}',[PagesController::class,'edit']);
     Route::post('/update/{id}',[PagesController::class,'update']);
+    Route::get('/delete/{id}',[PagesController::class,'destroy']);
+    Route::get('/show/{id}',[PagesController::class,'Dsingle']);
     
 });

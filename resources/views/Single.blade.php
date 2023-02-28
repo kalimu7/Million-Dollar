@@ -36,6 +36,7 @@
         }
         #comment{
             width: 100%;
+            resize: none
         }
     </style>
     
@@ -52,7 +53,7 @@
             {{ session('success') }}
         </div>
         @endif
-        @foreach ($Ps as $P)
+        
         <div class="singlepost  mx-auto">
             
             <div class="d-flex justify-content-between align-items-center ">
@@ -65,16 +66,7 @@
                     </div>
                 </div>
 
-                @if ($P->user_id == auth()->user()->id)
-                <div class="second position-relative">
-                    <i class="bi bi-three-dots" id="btndot"></i>
-                    <div class="popup text-center bg-primary">
-                        <a class="d-block py-2 text-decoration-none text-white links mb-1" href="/edit/{{$P->id}}">Update Post</a>
-                        <a class="d-block py-2 text-decoration-none text-white links " href="/delete/{{$P->id}}"> Delete Post </a>
-                    </div>
-                </div>
-                @endif
-
+                
 
             </div>
             <div class="postdescription my-4">
@@ -86,18 +78,26 @@
             <div class="postimage">
                 <img width="100%" height="100%" src="/uploaded/{{$P->image_path}}" alt="">
             </div>
-            <div class="likescom d-flex">
+            {{-- <div class="likescom d-flex">
                 <div class="likes w-50 text-center">
-                    <i class="bi bi-heart "></i>
+                    <i class="bi bi-heart "></i> --}}
                     {{-- <i class="bi bi-heart-fill text-danger"></i> --}}
-                </div>
+                {{-- </div>
                 <div class="comment w-50 text-center">
-                    <a class="text-decoration-none" href="/show/{{$P->id}}"><i class="bi bi-chat"></i></a>
+                    <i class="bi bi-chat"></i>
                 </div>
+            </div> --}}
+            <div class="inputs my-2">
+                <form action="" method="">
+                    <input type="hidden" value="{{$P->id}}">
+                    <input type="hidden" value="{{$P->user_id}}">
+                    <textarea  name="" id="comment" rows="2" placeholder="Write your comment in this section" ></textarea>
+                    <button type="submit" class="btn btn-outline-primary" >Add Comment</button>
+                </form>
             </div>
             
         </div> 
-        @endforeach
+        
         </div>   
     </div>
     

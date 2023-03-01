@@ -92,7 +92,7 @@
                     {{-- <i class="bi bi-heart-fill text-danger"></i> --}}
                 </div>
                 <div class="comment w-50 text-center">
-                    <a class="text-decoration-none" href="/show/{{$P->id}}"><i class="bi bi-chat"></i></a>
+                    <a class="text-decoration-none" href="/display/{{$P->id}}"><i class="bi bi-chat"></i></a>
                 </div>
             </div>
             

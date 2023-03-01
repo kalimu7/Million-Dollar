@@ -79,6 +79,7 @@ class PagesController extends Controller
         return view('Single')->with('P',$post);
     }
     
+    
 }
 
 

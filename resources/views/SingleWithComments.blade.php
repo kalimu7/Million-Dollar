@@ -1,6 +1,7 @@
 @extends('layout.app')
 @section('content')
-
+{{-- @if(empty($PC[0]->owner))
+@endif --}}
     <style>
        
         .profileimg{
@@ -55,12 +56,14 @@
         @endif
         
         <div class="singlepost  mx-auto">
+        
             
+          
             <div class="d-flex justify-content-between align-items-center ">
                 <div class="first d-flex align-items-center">
                     <img class="profileimg" src="/images/download.jpg" alt="">
                     <div>
-                        <p class="mx-3">{{$P->owner}}</p>
+                        <p class="mx-3">{{$PC[0]->owner}}</p>
                         <span class="mx-3">3 hours Ago</span>
                         <i class="bi bi-globe-europe-africa"></i>
                     </div>
@@ -70,13 +73,13 @@
 
             </div>
             <div class="postdescription my-4">
-                <h3>{{$P->title}}</h3>
+                <h3>{{$PC[0]->title}}</h3>
                 <p>
-                    {{$P->description}}
+                    {{$PC[0]->description}}
                 </p>
             </div>
             <div class="postimage">
-                <img width="100%" height="100%" src="/uploaded/{{$P->image_path}}" alt="">
+                <img width="100%" height="100%" src="/uploaded/{{$PC[0]->image_path}}" alt="">
             </div>
             {{-- <div class="likescom d-flex">
                 <div class="likes w-50 text-center">
@@ -90,12 +93,33 @@
             <div class="inputs my-2">
                 <form action="http://127.0.0.1:8000/Addcomment" method="Post">
                     @csrf
-                    <input type="text" name="post_id" value="{{$P->id}}">
+                    <input type="text" name="post_id" value="{{$PC[0]->id}}">
                     <input type="text" name="user_id"value="{{ Auth::user()->id}}">
                     <textarea  name="comment" id="comment" rows="2" placeholder="Write your comment in this section" ></textarea>
                     <button type="submit" class="btn btn-outline-primary" >Add Comment</button>
                 </form>
             </div>
+            {{-- @if(!empty($PC[0]->name)) --}}
+            <div class="comments">
+                
+                @for($i=0;$i<count($PC);$i++)
+                    <div>
+                        <div class="first d-flex align-items-center">
+                            <img class="profileimg" src="/images/download.jpg" alt="">
+                            <div>
+                                <p class="mx-3">{{$PC[$i]->name}}</p>
+                                <span class="mx-3">3 hours Ago</span>
+                                <i class="bi bi-globe-europe-africa"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-warning my-3">Comments : </h4>
+                            <p>{{$PC[$i]->comment}}</p>
+                        </div>
+                    </div>
+               @endfor
+            </div>
+            {{-- @endif --}}
         </div> 
         
         </div>   

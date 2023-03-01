@@ -7,6 +7,7 @@ use App\Models\posts;
 use App\Models\User;
 use App\Models\comment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class CommentController extends Controller
 {
     public function Add(Request $request){
@@ -17,6 +18,20 @@ class CommentController extends Controller
 
         $comment->save();
 
-        return redirect('/show/'.$comment->user_id)->with('success', 'New comment added successfully');
+        return redirect('/show/'.$comment->post_id)->with('success', 'New comment added successfully');
+    }
+    public function DsingleWithComment($idpost){
+        $posts = DB::table('comments')
+                    
+                    ->join('posts','comments.post_id', '=','posts.id')
+                    // ->take(1)
+                    ->join('users','comments.user_id','=','users.id')
+                    
+                    ->select('comments.*','posts.*','users.*')
+                    // ->select('posts.*')
+                    ->where('posts.id',$idpost)
+                    ->get();
+
+        return view('SingleWithComments')->with('PC',$posts);
     }
 }

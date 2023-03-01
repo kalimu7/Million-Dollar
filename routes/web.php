@@ -36,5 +36,6 @@ Route::middleware([
     Route::get('/delete/{id}',[PagesController::class,'destroy']);
     Route::get('/show/{id}',[PagesController::class,'Dsingle']);
     Route::post('/Addcomment',[CommentController::class,'Add']);
+    Route::get('/display/{idpost}',[CommentController::class,'DsingleWithComment']);
     
 });

@@ -101,7 +101,7 @@
             </div>
             {{-- @if(!empty($PC[0]->name)) --}}
             <div class="comments">
-                
+                {{-- **************************just dump update********************* --}}
                 @for($i=0;$i<count($PC);$i++)
                     <div>
                         <div class="first d-flex align-items-center">

@@ -104,19 +104,31 @@
                 <div class="comments">
                     {{-- **************************just dump update********************* --}}
                     @for($i=0;$i<count($PC);$i++)
-                        <div class="my-5">
-                            <div class="first d-flex align-items-center">
-                                <img class="profileimg" src="/images/download.jpg" alt="">
+                        <div class="my-5 d-flex bg-primary justify-content-between align-items-center"> 
+                            <div>
+                                <div class="first d-flex align-items-center">
+                                    <img class="profileimg" src="/images/download.jpg" alt="">
+                                    <div>
+                                        <p class="mx-3">{{$PC[$i]->name}}</p>
+                                        <span class="mx-3">3 hours Ago</span>
+                                        <i class="bi bi-globe-europe-africa"></i>
+                                    </div>
+                                </div>
                                 <div>
-                                    <p class="mx-3">{{$PC[$i]->name}}</p>
-                                    <span class="mx-3">3 hours Ago</span>
-                                    <i class="bi bi-globe-europe-africa"></i>
+                                    <h4 class="text-warning my-3 d-inline">Comments : </h4> <span>{{$PC[$i]->comment}}</span>
+                                    
                                 </div>
                             </div>
+                            
                             <div>
-                                <h4 class="text-warning my-3 d-inline">Comments : </h4> <span>{{$PC[$i]->comment}}</span>
-                                
+                                <form action="/likeit" method="post">
+                                    @csrf
+                                  <input type="text" name="user_id"value="{{ Auth::user()->id}}">
+                                  <input type="text" name="comment_id"value="{{$PC[$i]->comment_id }}">
+                                  <button type="submit" class="border-none"> <i class="bi bi-heart display-6"></i> </button> 
+                                </form>
                             </div>
+                            
                         </div>
                 @endfor
                 </div>

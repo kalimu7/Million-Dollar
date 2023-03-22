@@ -37,5 +37,6 @@ Route::middleware([
     Route::get('/show/{id}',[PagesController::class,'Dsingle']);
     Route::post('/Addcomment',[CommentController::class,'Add']);
     Route::get('/display/{idpost}',[CommentController::class,'DsingleWithComment']);
+    Route::post('/likeit',[CommentController::class,'Like']);
     
 });

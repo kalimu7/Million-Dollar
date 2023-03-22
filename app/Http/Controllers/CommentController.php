@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\posts;
 use App\Models\User;
 use App\Models\comment;
+use App\Models\likes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 class CommentController extends Controller
@@ -25,17 +26,25 @@ class CommentController extends Controller
         ->join('posts','comments.post_id', '=','posts.id')
         // ->take(1)
         ->join('users','comments.user_id','=','users.id')
-        ->select('comments.*','posts.*','users.*')
+        ->select('comments.id as comment_id', 'comments.comment', 'comments.user_id', 'comments.post_id', 'comments.created_at', 'comments.updated_at','posts.*','users.*')
         // ->select('posts.*')
         ->where('posts.id',$idpost)
         ->get();
+       
         if ($posts->isEmpty()) {
             $post = posts::find($idpost);
             return view('Single')->with('P',$post);
         }else{
             return view('SingleWithComments')->with('PC', $posts)->with('idpost', $idpost);
-        }        
-        
-        
+        } 
+    }
+    public function Like(Request $request){
+        $like = new likes;
+        $like->likes++;
+        $like->dislikes = 0;
+        $like->comment_id = $request->input('comment_id');
+        $like->user_id = $request->input('user_id');
+        $like->save();
+        echo 'liked it';
     }
 }

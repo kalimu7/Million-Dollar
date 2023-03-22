@@ -18,20 +18,24 @@ class CommentController extends Controller
 
         $comment->save();
 
-        return redirect('/show/'.$comment->post_id)->with('success', 'New comment added successfully');
+        return redirect('/display/'.$comment->post_id)->with('success', 'New comment added successfully');
     }
     public function DsingleWithComment($idpost){
-        $posts = DB::table('comments')
-                    
-                    ->join('posts','comments.post_id', '=','posts.id')
-                    // ->take(1)
-                    ->join('users','comments.user_id','=','users.id')
-                    
-                    ->select('comments.*','posts.*','users.*')
-                    // ->select('posts.*')
-                    ->where('posts.id',$idpost)
-                    ->get();
-
-        return view('SingleWithComments')->with('PC',$posts);
+        $posts = DB::table('comments')    
+        ->join('posts','comments.post_id', '=','posts.id')
+        // ->take(1)
+        ->join('users','comments.user_id','=','users.id')
+        ->select('comments.*','posts.*','users.*')
+        // ->select('posts.*')
+        ->where('posts.id',$idpost)
+        ->get();
+        if ($posts->isEmpty()) {
+            $post = posts::find($idpost);
+            return view('Single')->with('P',$post);
+        }else{
+            return view('SingleWithComments')->with('PC', $posts)->with('idpost', $idpost);
+        }        
+        
+        
     }
 }

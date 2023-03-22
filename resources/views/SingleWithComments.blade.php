@@ -93,33 +93,34 @@
             <div class="inputs my-2">
                 <form action="http://127.0.0.1:8000/Addcomment" method="Post">
                     @csrf
-                    <input type="text" name="post_id" value="{{$PC[0]->id}}">
+                    <input type="text" name="post_id" value="{{$idpost}}">
                     <input type="text" name="user_id"value="{{ Auth::user()->id}}">
                     <textarea  name="comment" id="comment" rows="2" placeholder="Write your comment in this section" ></textarea>
                     <button type="submit" class="btn btn-outline-primary" >Add Comment</button>
                 </form>
             </div>
-            {{-- @if(!empty($PC[0]->name)) --}}
-            <div class="comments">
-                {{-- **************************just dump update********************* --}}
-                @for($i=0;$i<count($PC);$i++)
-                    <div>
-                        <div class="first d-flex align-items-center">
-                            <img class="profileimg" src="/images/download.jpg" alt="">
+
+            @if(!empty($PC[0]->comment))
+                <div class="comments">
+                    {{-- **************************just dump update********************* --}}
+                    @for($i=0;$i<count($PC);$i++)
+                        <div class="my-5">
+                            <div class="first d-flex align-items-center">
+                                <img class="profileimg" src="/images/download.jpg" alt="">
+                                <div>
+                                    <p class="mx-3">{{$PC[$i]->name}}</p>
+                                    <span class="mx-3">3 hours Ago</span>
+                                    <i class="bi bi-globe-europe-africa"></i>
+                                </div>
+                            </div>
                             <div>
-                                <p class="mx-3">{{$PC[$i]->name}}</p>
-                                <span class="mx-3">3 hours Ago</span>
-                                <i class="bi bi-globe-europe-africa"></i>
+                                <h4 class="text-warning my-3 d-inline">Comments : </h4> <span>{{$PC[$i]->comment}}</span>
+                                
                             </div>
                         </div>
-                        <div>
-                            <h4 class="text-warning my-3">Comments : </h4>
-                            <p>{{$PC[$i]->comment}}</p>
-                        </div>
-                    </div>
-               @endfor
-            </div>
-            {{-- @endif --}}
+                @endfor
+                </div>
+            @endif
         </div> 
         
         </div>   

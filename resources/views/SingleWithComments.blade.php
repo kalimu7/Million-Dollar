@@ -125,7 +125,9 @@
                                     @csrf
                                   <input type="text" name="user_id"value="{{ Auth::user()->id}}">
                                   <input type="text" name="comment_id"value="{{$PC[$i]->comment_id }}">
-                                  <button type="submit" class="border-none"> <i class="bi bi-heart display-6"></i> </button> 
+                                  <input type="text" name="post_id"value="{{$idpost }}">
+                                  <button type="submit" class="border-0 bg-transparent text-"> <i class="bi bi-heart display-6"></i> </button> 
+                                  <i class="bi bi-heart-fill text-danger display-6 cursor-pointer"></i>
                                 </form>
                             </div>
                             

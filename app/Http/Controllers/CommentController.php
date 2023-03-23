@@ -24,10 +24,8 @@ class CommentController extends Controller
     public function DsingleWithComment($idpost){
         $posts = DB::table('comments')    
         ->join('posts','comments.post_id', '=','posts.id')
-        // ->take(1)
         ->join('users','comments.user_id','=','users.id')
         ->select('comments.id as comment_id', 'comments.comment', 'comments.user_id', 'comments.post_id', 'comments.created_at', 'comments.updated_at','posts.*','users.*')
-        // ->select('posts.*')
         ->where('posts.id',$idpost)
         ->get();
        
@@ -39,12 +37,25 @@ class CommentController extends Controller
         } 
     }
     public function Like(Request $request){
-        $like = new likes;
-        $like->likes++;
-        $like->dislikes = 0;
-        $like->comment_id = $request->input('comment_id');
-        $like->user_id = $request->input('user_id');
-        $like->save();
-        echo 'liked it';
+        
+        $commentid = $request->input('comment_id');
+        $userid = $request->input('user_id');
+        $existing_like = likes::where('comment_id', $commentid)->where('user_id', $userid)->first();
+        if(!$existing_like){
+
+            $like = new likes;
+            $like->likes++;
+            $like->dislikes = 0;
+            $like->comment_id = $commentid;
+            $like->user_id = $userid;
+            $like->post_id = $request->input('post_id');
+            $like->save();
+            echo 'like added successfully';
+
+        }else{
+
+            echo 'you have already liked this comment';
+
+        }
     }
 }

@@ -17,10 +17,11 @@ return new class extends Migration
             $table->unsignedBigInteger('comment_id');
             $table->integer('likes')->default(0);
             $table->integer('dislikes')->default(0);
+            $table->integer('post_id');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('comments')->references('id')->on('comments');
-            
+            $table->foreign('comment_id')->references('id')->on('comments');
+            $table->foreign('post_id')->references('id')->on('posts'); 
         });
     }
 

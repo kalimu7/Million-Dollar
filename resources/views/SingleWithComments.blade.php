@@ -97,8 +97,8 @@
             <div class="inputs my-2">
                 <form action="http://127.0.0.1:8000/Addcomment" method="Post">
                     @csrf
-                    <input type="text" name="post_id" value="{{$idpost}}">
-                    <input type="text" name="user_id"value="{{ Auth::user()->id}}">
+                    <input type="hidden" name="post_id" value="{{$idpost}}">
+                    <input type="hidden" name="user_id"value="{{ Auth::user()->id}}">
                     <textarea  name="comment" id="comment" rows="2" placeholder="Write your comment in this section" ></textarea>
                     <button type="submit" class="btn btn-outline-primary" >Add Comment</button>
                 </form>
@@ -108,7 +108,7 @@
                 <div class="comments">
                     {{-- **************************just dump update********************* --}}
                     @for($i=0;$i<count($PC);$i++)
-                        <div class="my-5 d-flex bg-primary justify-content-between align-items-center"> 
+                        <div class="my-5 d-flex  justify-content-between align-items-center"> 
                             <div>
                                 <div class="first d-flex align-items-center">
                                     <img class="profileimg" src="/images/download.jpg" alt="">
@@ -126,13 +126,29 @@
                             
                             <div>
                                 times:{{$PC[$i]['total_likes']}}
+                                </br>
+                                
                                 <form action="/likeit" method="post">
                                     @csrf
                                   <input type="hidden" name="user_id"value="{{ Auth::user()->id}}">
                                   <input type="hidden" name="comment_id"value="{{$PC[$i]['comment_id'] }}">
                                   <input type="hidden" name="post_id"value="{{$idpost }}">
-                                  <button type="submit" class="border-0 bg-transparent text-"> <i class="bi bi-heart display-6"></i> </button> 
-                                  <i class="bi bi-heart-fill text-danger display-6 cursor-pointer"></i>
+                                    @php
+                                    $con = false;
+                                    @endphp
+                                  @for($j = 0;$j<count($PC[$i]['likes_info']);$j++)
+                                    @if (Auth::user()->id ==$PC[$i]['likes_info'][$j])
+                                        @php
+                                            $con = true;
+                                        @endphp
+                                        <i class="bi bi-heart-fill text-danger display-6 cursor-pointer"></i>
+                                    @endif
+                                    
+
+                                @endfor
+                                    @if ($con == false)    
+                                    <button type="submit" class="border-0 bg-transparent text-"> <i class="bi bi-heart display-6"></i> </button> 
+                                    @endif
                                 </form>
                             </div>
                             

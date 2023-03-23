@@ -25,9 +25,20 @@ class CommentController extends Controller
         $total_likes = DB::table('likes')
             ->where('comment_id', $comment_id)
             ->count('likes');
-    
         return $total_likes;
     }
+    public function getLikesCommentInfo($comment_id) {
+        $likes_info = DB::table('likes')
+            ->where('comment_id', $comment_id)
+            ->select('likes.user_id')
+            ->get();
+            $userids = [];
+            foreach($likes_info as $like){
+                $userids[] = $like->user_id;
+            }
+            return $userids;
+    }
+    
     public function DsingleWithComment($idpost){
         $posts = DB::table('comments')    
         ->join('posts','comments.post_id', '=','posts.id')
@@ -39,7 +50,8 @@ class CommentController extends Controller
         $postiyas = [];
         foreach ($posts as $p) {
             $total_likes = $this->getTotalLikesForComment($p->comment_id);
-    
+            $likes_info = $this->getLikesCommentInfo($p->comment_id);
+            
             $postiyas[] = [
                 'comment_id' => $p->comment_id,
                 'image_path' => $p->image_path,
@@ -54,9 +66,11 @@ class CommentController extends Controller
                 'total_likes' => $total_likes,
                 'id' => $p->id,
                 'name' => $p->name,
-                    // Add any other user data you want to include
+                'likes_info' => $likes_info,
+
+                
+                
             ];
-            
         }
         
         
@@ -90,7 +104,7 @@ class CommentController extends Controller
 
             echo 'you have already liked this comment';
 
-            return redirect()->route('/display/'.$idpost);
+            return redirect('/display/'.$idpost);
         }
     }
 }

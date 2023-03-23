@@ -72,6 +72,7 @@ class CommentController extends Controller
         
         $commentid = $request->input('comment_id');
         $userid = $request->input('user_id');
+        $idpost = $request->input('post_id');
         $existing_like = likes::where('comment_id', $commentid)->where('user_id', $userid)->first();
         if(!$existing_like){
 
@@ -83,11 +84,13 @@ class CommentController extends Controller
             $like->post_id = $request->input('post_id');
             $like->save();
             echo 'like added successfully';
+            return redirect('/display/'.$idpost);
 
         }else{
 
             echo 'you have already liked this comment';
 
+            return redirect()->route('/display/'.$idpost);
         }
     }
 }

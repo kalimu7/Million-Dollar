@@ -1,5 +1,6 @@
 @extends('layout.app')
 @section('content')
+
 {{-- @if(empty($PC[0]->owner))
 @endif --}}
     <style>
@@ -42,6 +43,9 @@
     </style>
     
     <div class="feed container my-4 d-flex">
+    
+        
+    
         <div class="add">
             <h3>Welcome To Our Social Network</h3>
             <a class="btn btn-primary" href="/add">Add New Post</a>
@@ -63,7 +67,7 @@
                 <div class="first d-flex align-items-center">
                     <img class="profileimg" src="/images/download.jpg" alt="">
                     <div>
-                        <p class="mx-3">{{$PC[0]->owner}}</p>
+                        <p class="mx-3">{{$PC[0]['owner']}}</p>
                         <span class="mx-3">3 hours Ago</span>
                         <i class="bi bi-globe-europe-africa"></i>
                     </div>
@@ -73,13 +77,13 @@
 
             </div>
             <div class="postdescription my-4">
-                <h3>{{$PC[0]->title}}</h3>
+                <h3>{{$PC[0]['title']}}</h3>
                 <p>
-                    {{$PC[0]->description}}
+                    {{$PC[0]['description']}}
                 </p>
             </div>
             <div class="postimage">
-                <img width="100%" height="100%" src="/uploaded/{{$PC[0]->image_path}}" alt="">
+                <img width="100%" height="100%" src="/uploaded/{{$PC[0]['image_path']}}" alt="">
             </div>
             {{-- <div class="likescom d-flex">
                 <div class="likes w-50 text-center">
@@ -100,7 +104,7 @@
                 </form>
             </div>
 
-            @if(!empty($PC[0]->comment))
+            @if(!empty($PC[0]['comment']))
                 <div class="comments">
                     {{-- **************************just dump update********************* --}}
                     @for($i=0;$i<count($PC);$i++)
@@ -109,23 +113,24 @@
                                 <div class="first d-flex align-items-center">
                                     <img class="profileimg" src="/images/download.jpg" alt="">
                                     <div>
-                                        <p class="mx-3">{{$PC[$i]->name}}</p>
+                                        <p class="mx-3">{{$PC[$i]['name']}}</p>
                                         <span class="mx-3">3 hours Ago</span>
                                         <i class="bi bi-globe-europe-africa"></i>
                                     </div>
                                 </div>
                                 <div>
-                                    <h4 class="text-warning my-3 d-inline">Comments : </h4> <span>{{$PC[$i]->comment}}</span>
+                                    <h4 class="text-warning my-3 d-inline">Comments : </h4> <span>{{$PC[$i]['comment']}}</span>
                                     
                                 </div>
                             </div>
                             
                             <div>
+                                times:{{$PC[$i]['total_likes']}}
                                 <form action="/likeit" method="post">
                                     @csrf
-                                  <input type="text" name="user_id"value="{{ Auth::user()->id}}">
-                                  <input type="text" name="comment_id"value="{{$PC[$i]->comment_id }}">
-                                  <input type="text" name="post_id"value="{{$idpost }}">
+                                  <input type="hidden" name="user_id"value="{{ Auth::user()->id}}">
+                                  <input type="hidden" name="comment_id"value="{{$PC[$i]['comment_id'] }}">
+                                  <input type="hidden" name="post_id"value="{{$idpost }}">
                                   <button type="submit" class="border-0 bg-transparent text-"> <i class="bi bi-heart display-6"></i> </button> 
                                   <i class="bi bi-heart-fill text-danger display-6 cursor-pointer"></i>
                                 </form>

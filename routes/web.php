@@ -38,5 +38,6 @@ Route::middleware([
     Route::post('/Addcomment',[CommentController::class,'Add']);
     Route::get('/display/{idpost}',[CommentController::class,'DsingleWithComment']);
     Route::post('/likeit',[CommentController::class,'Like']);
+    Route::get('/count/{commentid}',[CommentController::class,'getTotalLikesForComment']);
     
 });

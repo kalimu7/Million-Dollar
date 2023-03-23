@@ -21,6 +21,13 @@ class CommentController extends Controller
 
         return redirect('/display/'.$comment->post_id)->with('success', 'New comment added successfully');
     }
+    public function getTotalLikesForComment($comment_id) {
+        $total_likes = DB::table('likes')
+            ->where('comment_id', $comment_id)
+            ->count('likes');
+    
+        return $total_likes;
+    }
     public function DsingleWithComment($idpost){
         $posts = DB::table('comments')    
         ->join('posts','comments.post_id', '=','posts.id')
@@ -28,12 +35,37 @@ class CommentController extends Controller
         ->select('comments.id as comment_id', 'comments.comment', 'comments.user_id', 'comments.post_id', 'comments.created_at', 'comments.updated_at','posts.*','users.*')
         ->where('posts.id',$idpost)
         ->get();
+
+        $postiyas = [];
+        foreach ($posts as $p) {
+            $total_likes = $this->getTotalLikesForComment($p->comment_id);
+    
+            $postiyas[] = [
+                'comment_id' => $p->comment_id,
+                'image_path' => $p->image_path,
+                'description' => $p->description,
+                'title' => $p->title,
+                'owner' => $p->owner,
+                'comment' => $p->comment,
+                'user_id' => $p->user_id,
+                'post_id' => $p->post_id,
+                'created_at' => $p->created_at,
+                'updated_at' => $p->updated_at,
+                'total_likes' => $total_likes,
+                'id' => $p->id,
+                'name' => $p->name,
+                    // Add any other user data you want to include
+            ];
+            
+        }
+        
+        
        
         if ($posts->isEmpty()) {
             $post = posts::find($idpost);
             return view('Single')->with('P',$post);
         }else{
-            return view('SingleWithComments')->with('PC', $posts)->with('idpost', $idpost);
+            return view('SingleWithComments')->with('PC', $postiyas)->with('idpost', $idpost);
         } 
     }
     public function Like(Request $request){

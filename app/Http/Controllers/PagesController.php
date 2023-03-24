@@ -47,6 +47,10 @@ class PagesController extends Controller
         $AllPosts = posts::all();
         return view ('Posts')->with('Ps',$AllPosts);
     }
+    public function fetchcategory($category){
+        $AllPosts = posts::where('category', $category)->get();
+        return view ('Posts')->with('Ps',$AllPosts);
+    }
     public function edit($id){
         $single = posts::find($id);
         return view('edit')->with('Ps',$single);
@@ -77,6 +81,9 @@ class PagesController extends Controller
     public function Dsingle($id){
         $post = posts::find($id);
         return view('Single')->with('P',$post);
+    }
+    public function category(){
+        return view('category');
     }
     
     

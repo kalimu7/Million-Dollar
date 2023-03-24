@@ -39,7 +39,7 @@ Route::middleware([
     Route::get('/display/{idpost}',[CommentController::class,'DsingleWithComment']);
     Route::post('/likeit',[CommentController::class,'Like']);
     Route::get('/categories',[PagesController::class,'category']);
-    Route::get('/category/{category}',[PagesController::class,'fetchcategory']);
+    Route::get('/category/{z}',[PagesController::class,'fetchcategory']);
     
     
 });

@@ -38,6 +38,9 @@
         #comment{
             width: 100%;
         }
+        .feed{
+            min-height: 80vh;
+        }
     </style>
     
     <div class="feed container my-4 d-flex">

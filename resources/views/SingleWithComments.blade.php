@@ -45,21 +45,32 @@
     <div class="feed container my-4 d-flex">
     
         
-    
-        <div class="add">
-            <h3>Welcome To Our Social Network</h3>
+        @php
+            $user = DB::table('users')
+                    ->select('name')
+                    ->where('id', '=', auth()->user()->id)
+                    ->first();
+        @endphp
+        <div class="add text-start">
+            <img src="/images/download.jpg" class="profileimg" alt="" srcset="">
+            <span>{{ $user->name }}</span>
+            <div class="my-3">
+                posts: {{ DB::table('posts')->WHERE('user_id','=',auth()->user()->id)->count() }}<br>
+                comments: {{ DB::table('comments')->WHERE('user_id','=',auth()->user()->id)->count() }}
+            </div>
             <a class="btn btn-primary" href="/add">Add New Post</a>
             
         </div>
         
-       <div d-flex flex-column>
-        @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-        @endif
-        
-        <div class="singlepost  mx-auto">
+        <div d-flex flex-column>
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
+            
+            <div class="singlepost  mx-auto">
+            <h3 class="text-center display-6">Welcome To Our Social Network</h3>
         
             
           
@@ -125,8 +136,8 @@
                             </div>
                             
                             <div>
-                                times:{{$PC[$i]['total_likes']}}
-                                </br>
+                                {{-- {{$PC[$i]['total_likes']}} --}}
+                                
                                 
                                 <form action="/likeit" method="post">
                                     @csrf
@@ -141,7 +152,11 @@
                                         @php
                                             $con = true;
                                         @endphp
-                                        <i class="bi bi-heart-fill text-danger display-6 cursor-pointer"></i>
+                                        <div class="d-flex align-items-center">
+                                            {{$PC[$i]['total_likes']}}
+                                            <i class="px-3 bi bi-heart-fill text-danger display-6 cursor-pointer"></i>
+                                        </div>
+                                         
                                     @endif
                                     
 

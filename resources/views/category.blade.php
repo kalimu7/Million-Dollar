@@ -113,6 +113,18 @@ a{
               </div>
             </div>
           </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="card mb-30"><a class="card-img-tiles" href="#" data-abc="true">
+                <div class="inner">
+                  <div class="main-img"><img src="/images/ALL.png" alt="Category"></div>
+                  
+                </div></a>
+              <div class="card-body text-center">
+                <h4 class="card-title">ALL</h4>
+                <a class="btn btn-outline-primary btn-sm" href="/Posts" data-abc="true">View Category</a>
+              </div>
+            </div>
+          </div>
         </div>
         </div>
 

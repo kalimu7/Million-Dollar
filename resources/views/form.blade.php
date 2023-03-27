@@ -61,14 +61,18 @@ label {
                         <div class="form-group">
                             <label for="form_name">title</label>
                             <input id="form_name" type="text" name="title" class="form-control" placeholder="Please enter your firstname *"  data-error="Firstname is required.">
-                            
+                            @if ($errors->has('title'))
+                                <span class="error text-danger">{{ $errors->first('title') }}</span>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="form_email">image</label>
                             <input id="form_email" type="file" name="image" class="form-control" placeholder="Please enter your email *"  data-error="Valid email is required.">
-                            
+                            @if ($errors->has('image'))
+                                <span class="error text-danger">{{ $errors->first('image') }}</span>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -78,13 +82,15 @@ label {
                         <div class="form-group">
                             <label for="form_need">Category</label>
                             <select id="form_need" name="category" class="form-control"  data-error="Please specify your need.">
-                                <option value="" selected disabled>--Select Your Issue--</option>
+                                <option value="" selected >--Select Your Issue--</option>
                                 <option >Sport</option>
                                 <option >IT</option>
                                 <option >Ai</option>
                                 <option >Other</option>
                             </select>
-                            
+                            @if ($errors->has('category'))
+                                <span class="error text-danger">{{ $errors->first('category') }}</span>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -93,6 +99,9 @@ label {
                         <div class="form-group">
                             <label for="form_message">Description *</label>
                             <textarea id="form_message" name="Description" class="form-control" placeholder="Write your message here." rows="4"  data-error="Please, leave us a message."></textarea>
+                            @if ($errors->has('Description'))
+                                <span class="error text-danger">{{ $errors->first('Description') }}</span>
+                            @endif
                         </div>
 
                     </div>

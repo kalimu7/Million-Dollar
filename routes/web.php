@@ -14,19 +14,18 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-Route::get('/',[PagesController::class,'body']);
-Route::get('/main',[PagesController::class,'body']);
-Route::get('/footer',[ PagesController::class,'footer']);
+
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-
-    })->name('dashboard');
+    ])->group(function () {
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+            
+        })->name('dashboard');
+    Route::get('/',[PagesController::class,'body']);
     Route::get('/Posts',[PagesController::class,'fetchdata']);
     Route::get('/add',[PagesController::class,'addpost']);
     Route::post('/ajoute',[PagesController::class,'ADD']);

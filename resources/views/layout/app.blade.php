@@ -18,7 +18,10 @@
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav  mb-2 mb-lg-0  ms-auto">
                         <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/categories">Categories</a>
                         </li>
                         {{-- ************links**************** --}}
                         @if (!Auth::check())
@@ -28,6 +31,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/login">Login</a>
                             </li> 
+                             
                         @endif
                         @if (Auth::check())
                             <li class="nav-item">

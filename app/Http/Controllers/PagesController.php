@@ -24,6 +24,12 @@ class PagesController extends Controller
         return view('form');
     }
     public function ADD(Request $request){
+        $request->validate([
+            'title' => 'required',
+            'Description' => 'required',
+            'image' => 'required|mimes:jpg,jpeg,png|max:5048',
+            'category'=>'Required'
+        ]);
         $id = Auth::id();
         $name = Auth::user()->name;
         // echo $name;
@@ -47,6 +53,7 @@ class PagesController extends Controller
         $AllPosts = posts::all();
         return view ('Posts')->with('Ps',$AllPosts);
     }
+    
     public function fetchcategory($category){
         $AllPosts = posts::where('category', $category)->get();
         return view ('Posts')->with('Ps',$AllPosts);

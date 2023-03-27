@@ -16,6 +16,7 @@
             width: 800px;
             height: 400px;
         }
+        
         .popup{
             width: 150px;
             height: fit-content;
@@ -40,18 +41,35 @@
     </style>
     
     <div class="feed container my-4 d-flex">
-        <div class="add">
-            <h3>Welcome To Our Social Network</h3>
+        
+        @php
+            $user = DB::table('users')
+                    ->select('name')
+                    ->where('id', '=', auth()->user()->id)
+                    ->first();
+        @endphp
+        <div class="add text-start">
+            <img src="/images/download.jpg" class="profileimg" alt="" srcset="">
+            <span>{{ $user->name }}</span>
+            <div class="my-3">
+                posts: {{ DB::table('posts')->WHERE('user_id','=',auth()->user()->id)->count() }}<br>
+                comments: {{ DB::table('comments')->WHERE('user_id','=',auth()->user()->id)->count() }}
+            </div>
             <a class="btn btn-primary" href="/add">Add New Post</a>
-            
         </div>
         
-       <div d-flex flex-column>
-        @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-        @endif
+        <div d-flex flex-column>
+            
+            <h3 class="text-center display-6 my-4 ">Welcome To Our Social Network</h3>
+            <div class="searchbar text-center">
+                <input type="text" placeholder="search"> 
+                <i class="bi bi-search mx-2 sr" id="searchbtn"></i>
+            </div>
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
         @foreach ($Ps as $P)
         <div class="singlepost  mx-auto">
             
@@ -98,7 +116,8 @@
             
         </div> 
         @endforeach
-        </div>   
+    </div>   
+    
     </div>
     
 

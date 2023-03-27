@@ -62,7 +62,7 @@
             
             <h3 class="text-center display-6 my-4 ">Welcome To Our Social Network</h3>
             <div class="searchbar text-center">
-                <input type="text" placeholder="search"> 
+                <input type="text" placeholder="search" id="inoutsearch"> 
                 <i class="bi bi-search mx-2 sr" id="searchbtn"></i>
             </div>
             @if (session('success'))
@@ -96,7 +96,7 @@
 
             </div>
             <div class="postdescription my-4">
-                <h3>{{$P->title}}</h3>
+                <h3 class="titles">{{$P->title}}</h3>
                 <p>
                     {{$P->description}}
                 </p>
@@ -120,5 +120,22 @@
     
     </div>
     
-
+    <script>
+        const titles = document.querySelectorAll('.titles');
+        const inputsearch = document.querySelector('#inoutsearch');
+        inputsearch.addEventListener('input',(e)=>{
+            let filter = e.target.value;
+            filter = filter.toUpperCase();
+            for (let i = 0; i < titles.length; i++) {
+            let a = titles[i].innerHTML || titles[i].textContent;
+            a = a.toUpperCase();
+            if (a.indexOf(filter) > -1) {
+                titles[i].parentElement.parentElement.style.display = "block";
+            } else {
+                titles[i].parentElement.parentElement.style.display = "none";
+            }
+    }
+        })
+        
+    </script>
 @endsection

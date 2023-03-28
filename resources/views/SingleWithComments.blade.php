@@ -115,7 +115,7 @@
                 </form>
             </div>
 
-            @if(!empty($PC[0]['comment']))
+            {{-- @if(!empty($PC[0]['comment'])) --}}
                 <div class="comments">
                     {{-- **************************just dump update********************* --}}
                     @for($i=0;$i<count($PC);$i++)
@@ -161,7 +161,8 @@
                                     
 
                                 @endfor
-                                    @if ($con == false)    
+                                    @if ($con == false)   
+                                    {{$PC[$i]['total_likes']}} 
                                     <button type="submit" class="border-0 bg-transparent text-"> <i class="bi bi-heart display-6"></i> </button> 
                                     @endif
                                 </form>
@@ -170,7 +171,7 @@
                         </div>
                 @endfor
                 </div>
-            @endif
+            {{-- @endif --}}
         </div> 
         
         </div>   

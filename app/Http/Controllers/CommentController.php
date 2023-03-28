@@ -27,6 +27,7 @@ class CommentController extends Controller
             ->count('likes');
         return $total_likes;
     }
+    //this in the purpose to know all the user_id who has liked this comment.
     public function getLikesCommentInfo($comment_id) {
         $likes_info = DB::table('likes')
             ->where('comment_id', $comment_id)
@@ -38,7 +39,6 @@ class CommentController extends Controller
             }
             return $userids;
     }
-    
     public function DsingleWithComment($idpost){
         $posts = DB::table('comments')    
         ->join('posts','comments.post_id', '=','posts.id')
@@ -68,8 +68,6 @@ class CommentController extends Controller
                 'name' => $p->name,
                 'likes_info' => $likes_info,
 
-                
-                
             ];
         }
         

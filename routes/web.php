@@ -16,16 +16,11 @@ use App\Http\Controllers\CommentController;
 
 
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-    ])->group(function () {
-        Route::get('/dashboard', function () {
+Route::get('/',[PagesController::class,'body']);
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::get('/dashboard', function () {
             return view('dashboard');
-            
     })->name('dashboard');
-    Route::get('/',[PagesController::class,'body']);
     Route::get('/Posts',[PagesController::class,'fetchdata']);
     Route::get('/add',[PagesController::class,'addpost']);
     Route::post('/ajoute',[PagesController::class,'ADD']);
@@ -39,6 +34,4 @@ Route::middleware([
     Route::post('/likeit',[CommentController::class,'Like']);
     Route::get('/categories',[PagesController::class,'category']);
     Route::get('/category/{z}',[PagesController::class,'fetchcategory']);
-    
-    
 });

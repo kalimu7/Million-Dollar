@@ -90,8 +90,8 @@
             <div class="inputs my-2">
                 <form action="http://127.0.0.1:8000/Addcomment" method="Post">
                     @csrf
-                    <input type="text" name="post_id" value="{{$P->id}}">
-                    <input type="text" name="user_id"value="{{ Auth::user()->id}}">
+                    <input type="hidden" name="post_id" value="{{$P->id}}">
+                    <input type="hidden" name="user_id"value="{{ Auth::user()->id}}">
                     <textarea  name="comment" id="comment" rows="2" placeholder="Write your comment in this section" ></textarea>
                     <button type="submit" class="btn btn-outline-primary" >Add Comment</button>
                 </form>

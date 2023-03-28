@@ -21,7 +21,6 @@
             <h3 class="text-primary ">Blog</h3>
             <a href="#" class="d-block text-white">Explore</a>
             <a href="#" class="d-block text-white">Categories</a>
-           
         </div>
         
     </div>

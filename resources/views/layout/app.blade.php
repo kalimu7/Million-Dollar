@@ -11,17 +11,17 @@
     
         <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark px-5">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Social Network</a>
+                <a class="navbar-brand" href="/">Social Network</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav  mb-2 mb-lg-0  ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            <a class="nav-link active "  aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/categories">Categories</a>
+                            <a class="nav-link d-block" href="/categories">Categories</a>
                         </li>
                         {{-- ************links**************** --}}
                         @if (!Auth::check())
@@ -37,7 +37,7 @@
                             <li class="nav-item">
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button class="nav-link" type="submit">Logout</button>
+                                    <button class="nav-link btn btn-outline-light text-primary" type="submit">Logout</button>
                                 </form>
                             </li> 
                         @endif
